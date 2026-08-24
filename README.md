@@ -84,7 +84,7 @@ Each major component follows the same pattern: a top-level `<Component>.tsx` tha
 ### Run with Docker (recommended)
 
 ```bash
-sudo docker compose up
+sudo docker compose up --build
 ```
 
 The app will build and start automatically.

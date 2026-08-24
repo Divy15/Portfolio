@@ -5,11 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: prod  # Targets the Nginx production stage
     ports:
-      - "5173:5173"
-    volumes:
-      - .:/app
-      - /app/node_modules # Prevents local node_modules from overwriting container node_modules
-    environment:
-      - NODE_ENV=development
-    tty: true
+      - "80:80"
+    restart: unless-stopped

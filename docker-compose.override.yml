@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      target: dev  # Overrides target to Vite development stage
+    ports:
+      - "5173:5173"  # Overrides host port mapping to local 5173
+    volumes:
+      - .:/app
+      - /app/node_modules # Prevents local node_modules from overwriting container node_modules
+    environment:
+      - NODE_ENV=development
