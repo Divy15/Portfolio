@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: "Playfair Display", serif;
+}
+
+body{
+  font-family: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* 80px offset for the sticky navbar */
+}
