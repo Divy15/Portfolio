@@ -1,75 +1,124 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built with React, TypeScript, Tailwind CSS, and Vite. Includes a downloadable resume, and dedicated desktop/mobile views for each section.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hero Section** – introduction / landing area
+- **Tech Stack** – showcase of tools and technologies used
+- **Experience** – work history / experience timeline
+- **Projects** – featured project showcase
+- **Navbar** – site navigation
+- **Theme support** – light/dark theme via React Context
+- **Responsive design** – separate Desktop and Mobile views per component
+- **Dockerized** – run the entire app with a single command
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+- [Docker](https://www.docker.com/)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
 
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+.
+├── public/                     # Static assets (e.g. resume, openly accessible)
+├── src/
+│   ├── components/
+│   │   ├── Experience/
+│   │   │   ├── Views/
+│   │   │   │   ├── DesktopView.tsx
+│   │   │   │   └── MobileView.tsx
+│   │   │   └── Experience.tsx
+│   │   ├── HeroSection/
+│   │   │   ├── Views/
+│   │   │   │   ├── DesktopView.tsx
+│   │   │   │   └── MobileView.tsx
+│   │   │   └── HeroSection.tsx
+│   │   ├── Navbar/
+│   │   │   ├── Views/
+│   │   │   │   ├── DesktopView.tsx
+│   │   │   │   └── MobileView.tsx
+│   │   │   └── Navbar.tsx
+│   │   ├── Projects/
+│   │   │   ├── Views/
+│   │   │   │   ├── DesktopView.tsx
+│   │   │   │   └── MobileView.tsx
+│   │   │   └── Projects.tsx
+│   │   └── TechStack/
+│   │       ├── Views/
+│   │       │   ├── DesktopView.tsx
+│   │       │   └── MobileView.tsx
+│   │       └── TechStack.tsx
+│   ├── contextx/
+│   │   └── ThemeContext.tsx    # Theme (light/dark) context provider
+│   ├── page/
+│   │   └── Home_page.tsx       # Main page composing all sections
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── docker-compose.yml
+├── dockerfile
+├── eslint.config.ts
+├── index.html
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.app.ts
+├── tsconfig.node.json
+└── vite.config.ts
 ```
+
+Each major component follows the same pattern: a top-level `<Component>.tsx` that decides which view to render, and a `Views/` folder containing separate `DesktopView.tsx` and `MobileView.tsx` implementations for responsive layouts.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) and Docker Compose installed
+  - _(or, for local development without Docker: Node.js and npm)_
+
+### Run with Docker (recommended)
+
+```bash
+sudo docker compose up
+```
+
+The app will build and start automatically.
+
+### Run locally (without Docker)
+
+```bash
+npm install
+npm run dev -- --host
+```
+
+The app will be available at `http://localhost:5173` by default.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+## 📄 Resume
+
+The resume is stored in the `public/` folder and is publicly accessible via the deployed site.
+
+## 🎨 Theming
+
+Theme state (light/dark mode) is managed globally via `src/contextx/ThemeContext.tsx` using React Context.
+
+## 📦 Scripts
+
+| Script | Description |
+|---|---|
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Build the app for production |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview the production build locally |
+
+
